@@ -3,6 +3,7 @@ import App from './App.vue'
 import PrimeVue from 'primevue/config';
 import installI18n from './i18n';
 import router from './router';
+import pinia from './store';
 
 // Styles import.
 import './index.css'
@@ -20,5 +21,8 @@ installI18n(app);
 
 // Use router.
 app.use(router);
+
+// Use pinia.
+app.use(pinia);
 
 app.mount('#app');
