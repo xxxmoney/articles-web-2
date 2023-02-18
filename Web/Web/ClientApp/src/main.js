@@ -1,6 +1,8 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import PrimeVue from 'primevue/config';
+import installI18n from './i18n';
+
 // Styles import.
 import './index.css'
 import 'primevue/resources/themes/saga-blue/theme.css' // theme
@@ -11,5 +13,8 @@ const app = createApp(App);
 
 // Use PrimeVue.
 app.use(PrimeVue);
+
+// Use i18n.
+installI18n(app);
 
 app.mount('#app');

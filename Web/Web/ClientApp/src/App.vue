@@ -5,13 +5,14 @@
 </template>
 
 <script>
+
 export default {
   setup () {
     
+    // const changeLanguage = () => {
+    //   i18n.locale.value = 'cs';
+    // }
 
-    return {
-
-    }
   }
 }
 </script>
