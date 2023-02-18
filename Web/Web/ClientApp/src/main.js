@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import PrimeVue from 'primevue/config';
 import installI18n from './i18n';
+import router from './router';
 
 // Styles import.
 import './index.css'
@@ -16,5 +17,8 @@ app.use(PrimeVue);
 
 // Use i18n.
 installI18n(app);
+
+// Use router.
+app.use(router);
 
 app.mount('#app');
