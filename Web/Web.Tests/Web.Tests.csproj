@@ -22,4 +22,8 @@
     <Folder Include="Data\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Web.Ioc\Web.Ioc.csproj" />
+  </ItemGroup>
+
 </Project>

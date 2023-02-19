@@ -31,7 +31,7 @@ namespace Web
 
             // Register using Ioc container setup.
             var containerSetup = new Ioc.ContainerSetup();
-            containerSetup.Configure(builder.Services, config.GetSection("Configuration").Get<Ioc.Configuration>());            
+            containerSetup.Configure(builder.Services, config.GetSection("Configuration").Get<Ioc.Configuration>());
 
             var app = builder.Build();
 
@@ -70,9 +70,7 @@ namespace Web
                 {
                     spa.UseProxyToSpaDevelopmentServer("http://localhost:8080");
                 }
-            });
-
-            //app.MapControllers();            
+            });          
 
             app.Run();
         }
