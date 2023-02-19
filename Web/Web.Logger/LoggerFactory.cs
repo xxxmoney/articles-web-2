@@ -36,7 +36,7 @@ namespace Web.Logger
             columnOptions.Store.Add(StandardColumn.Exception);
 
             // Create logger.
-            Log.Logger = new LoggerConfiguration()
+            var seriloger = new LoggerConfiguration()
                 .WriteTo.MSSqlServer(
                     connectionString: configuration.ConnectionString,
                     columnOptions: columnOptions,
@@ -47,11 +47,8 @@ namespace Web.Logger
                         SchemaName = configuration.SchemaName
                     })
                 .CreateLogger();
-            
-            Serilog.Debugging.SelfLog.Enable(msg => Console.WriteLine(msg));
 
-            return Log.Logger;
-
+            return new Logger(seriloger);
         }
     }
 }

@@ -4,10 +4,9 @@ namespace Web.Api.Controllers
 {
     public class TestController : BaseController
     {
-        // Logger test
-        private readonly Serilog.ILogger logger;
-
-        public TestController(Serilog.ILogger logger)
+        private readonly Logger.ILogger logger;
+        
+        public TestController(Logger.ILogger logger)
         {
             this.logger = logger;
         }
@@ -15,7 +14,7 @@ namespace Web.Api.Controllers
         [HttpGet(nameof(TestLog))]
         public IActionResult TestLog()
         {
-            this.logger.Information("Test");
+            this.logger.Info("Test");
 
             return Ok();
         }

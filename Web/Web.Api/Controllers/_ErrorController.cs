@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Serilog;
 using System.Data;
 using System.Net;
 using Web.Api.ViewModels;
@@ -14,9 +13,9 @@ namespace Web.Api.Controllers
     [ApiExplorerSettings(IgnoreApi = true)]
     public class ErrorController : ControllerBase
     {
-        private readonly Serilog.ILogger logger;
+        private readonly Logger.ILogger logger;
 
-        public ErrorController(Serilog.ILogger logger)
+        public ErrorController(Logger.ILogger logger)
         {
             this.logger = logger;
         }
