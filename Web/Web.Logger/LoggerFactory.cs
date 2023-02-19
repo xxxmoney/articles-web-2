@@ -25,10 +25,21 @@ namespace Web.Logger
     {
         public ILogger CreateLogger(Configuration configuration)
         {
-            return new LoggerConfiguration()
+            var columnOptions = configuration.ColumnOptions;
+
+            // Set columns.
+            columnOptions.Store.Clear();
+            columnOptions.Store.Add(StandardColumn.Id);
+            columnOptions.Store.Add(StandardColumn.Message);
+            columnOptions.Store.Add(StandardColumn.Level);
+            columnOptions.Store.Add(StandardColumn.TimeStamp);
+            columnOptions.Store.Add(StandardColumn.Exception);
+
+            // Create logger.
+            Log.Logger = new LoggerConfiguration()
                 .WriteTo.MSSqlServer(
                     connectionString: configuration.ConnectionString,
-                    columnOptions: configuration.ColumnOptions,
+                    columnOptions: columnOptions,
                     sinkOptions: new MSSqlServerSinkOptions
                     {
                         AutoCreateSqlTable = configuration.AutoCreateTable,
@@ -36,6 +47,10 @@ namespace Web.Logger
                         SchemaName = configuration.SchemaName
                     })
                 .CreateLogger();
+            
+            Serilog.Debugging.SelfLog.Enable(msg => Console.WriteLine(msg));
+
+            return Log.Logger;
 
         }
     }
