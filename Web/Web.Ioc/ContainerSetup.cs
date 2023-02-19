@@ -9,21 +9,25 @@ namespace Web.Ioc
 {
     public interface IContainerSetup
     {
-        IServiceCollection Configure(IServiceCollection serviceCollection);
+        IServiceCollection Configure(IServiceCollection services, Configuration configuration);
     }
 
     public class ContainerSetup : IContainerSetup
     {
-        public IServiceCollection Configure(IServiceCollection serviceCollection)
+        public IServiceCollection Configure(IServiceCollection services, Configuration configuration)
         {
+            // Logger
+            var logger = new Logger.LoggerFactory().CreateLogger(configuration.LoggerConfiguration);
+            services.AddSingleton(logger);
+
             // Repositories
 
             // Operations
 
             // Services
-            
 
-            return serviceCollection;
+
+            return services;
         }
     }
 }

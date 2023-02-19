@@ -8,6 +8,6 @@ namespace Web.Ioc
 {
     public class Configuration
     {
-        
+        public Logger.Configuration LoggerConfiguration { get; set; }
     }
 }
