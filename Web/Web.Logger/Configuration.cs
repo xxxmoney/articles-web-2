@@ -20,5 +20,4 @@ namespace Web.Logger
         public string SchemaName { get; set; }
     }
 
-
 }

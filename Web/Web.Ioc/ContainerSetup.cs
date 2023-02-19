@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,14 @@ namespace Web.Ioc
     {
         public IServiceCollection Configure(IServiceCollection services, Configuration configuration)
         {
+            // Configuration
+            services.AddSingleton(configuration);
+
             // Logger
-            var logger = new Logger.LoggerFactory().CreateLogger(configuration.LoggerConfiguration);
+            var logger = new Logger.LoggerFactory().CreateLogger(configuration.Logger);
             services.AddSingleton(logger);
+
+            // Contexts            
 
             // Repositories
 
@@ -29,5 +35,6 @@ namespace Web.Ioc
 
             return services;
         }
+
     }
 }

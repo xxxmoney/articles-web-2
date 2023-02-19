@@ -20,9 +20,22 @@ namespace Web
                 configuration.RootPath = "ClientApp/public";
             });
 
+            // Add configuration.
+            var configBuilder = new ConfigurationBuilder()
+                .SetBasePath(builder.Environment.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true)
+                .AddEnvironmentVariables();
+            var config = configBuilder.Build();
+            builder.Services.AddSingleton(config);
+
+            // Register using Ioc container setup.
+            var containerSetup = new Ioc.ContainerSetup();
+            containerSetup.Configure(builder.Services, config.GetSection("Configuration").Get<Ioc.Configuration>());
+
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
+            // Configure the Http request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -31,7 +44,7 @@ namespace Web
 
             app.UseAuthorization();
 
-            // Adds SPA support.
+            // Add SPA support.
             app.UseSpaStaticFiles();
             app.UseSpa(spa =>
             {
@@ -48,8 +61,8 @@ namespace Web
                     spa.UseProxyToSpaDevelopmentServer("http://localhost:8080");
                 }
             });
-
-            app.MapControllers();
+           
+            app.MapControllers();            
 
             app.Run();
         }

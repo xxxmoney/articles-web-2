@@ -17,4 +17,8 @@
     <Folder Include="ViewModels\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Web.Ioc\Web.Ioc.csproj" />
+  </ItemGroup>
+
 </Project>
