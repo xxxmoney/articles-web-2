@@ -21,8 +21,11 @@ namespace Web.Ioc
             services.AddSingleton(configuration);
 
             // Logger
-            var logger = new Logger.LoggerFactory().CreateLogger(configuration.Logger);
-            services.AddSingleton(logger);
+            if (configuration.UseLogger)
+            {
+                var logger = new Logger.LoggerFactory().CreateLogger(configuration.Logger);
+                services.AddSingleton(logger);
+            }
 
             // Contexts            
 
