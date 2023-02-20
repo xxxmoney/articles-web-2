@@ -20,15 +20,17 @@ namespace Web.Business.Operations
         /// <param name="userId"></param>
         /// <param name="secret"></param>
         /// <returns></returns>
-        string CreateToken(int userId, string secret);
+        string CreateToken(string name, string secret);
     }
     public class TokenOperation : ITokenOperation
     {
-        public string CreateToken(int userId, string secret)
+        private const int EXPIRATION_DAYS = 7;
+
+        public string CreateToken(string name, string secret)
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, userId.ToString()),
+                new Claim(ClaimTypes.Name, name),
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -36,7 +38,7 @@ namespace Web.Business.Operations
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.AddDays(7),
+                Expires = DateTime.UtcNow.AddDays(EXPIRATION_DAYS),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);

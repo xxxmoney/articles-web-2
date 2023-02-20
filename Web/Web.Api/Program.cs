@@ -46,7 +46,7 @@ namespace Web
                 configuration.RootPath = "ClientApp/public";
             });
 
-            // Add configuration.
+            // Configuration setup.
             var configBuilder = new ConfigurationBuilder()
                 .SetBasePath(builder.Environment.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
@@ -73,11 +73,9 @@ namespace Web
                 {
                     OnTokenValidated = context =>
                     {
-                        //var webUserService = context.HttpContext.RequestServices.GetRequiredService<IWebUserService>();
+                        //var userOperation = context.HttpContext.RequestServices.GetRequiredService<Web.Business.Operations.IUserOperation>();
                         //var userId = int.Parse(context.Principal.Identity.Name);
-                        //var user = webUserService.GetById(userId);
-                        //if (user == null)
-                        //    context.Fail("Unauthorized");
+
                         return Task.CompletedTask;
                     }
                 };

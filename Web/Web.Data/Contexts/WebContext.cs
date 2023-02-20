@@ -10,8 +10,6 @@ namespace Web.Data.Contexts
 {
     public class WebContext : DbContext
     {
-        //private readonly string connectionString;
-
         public DbSet<User> Users { get; set; }
 
         public WebContext(DbContextOptions<WebContext> options) : base(options)
@@ -51,14 +49,6 @@ namespace Web.Data.Contexts
                     .IsFixedLength(true);
             });
         }
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    if (!optionsBuilder.IsConfigured)
-        //    {
-        //        optionsBuilder.UseSqlServer(connectionString);
-        //    }
-        //}
 
     }
 }

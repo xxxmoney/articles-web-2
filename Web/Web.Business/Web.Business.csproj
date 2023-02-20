@@ -8,12 +8,18 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
-    <Folder Include="Mappers\" />
-    <Folder Include="Dtos\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.27.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Web.Config\Web.Config.csproj" />
+    <ProjectReference Include="..\Web.Data\Web.Data.csproj" />
+    <ProjectReference Include="..\Web.Logger\Web.Logger.csproj" />
   </ItemGroup>
 
 </Project>
