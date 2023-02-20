@@ -1,10 +1,13 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Web.Business.Operations;
+using Web.Data.Contexts;
 
 namespace Web.Ioc
 {
@@ -28,10 +31,16 @@ namespace Web.Ioc
             }
 
             // Contexts            
+            services.AddDbContext<WebContext>(options =>
+            {
+                options.UseSqlServer(configuration.ConnectionStrings["Web"]);
+            });
 
             // Repositories
 
             // Operations
+            services.AddScoped<ITokenOperation, TokenOperation>();
+            services.AddScoped<IPasswordHashOperation, PasswordHashOperation>();
 
             // Services
 

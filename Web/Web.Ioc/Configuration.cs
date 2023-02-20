@@ -11,6 +11,7 @@ namespace Web.Ioc
         public bool UseLogger { get; set; }
         public Logger.Configuration Logger { get; set; }
         public Dictionary<string, string> ConnectionStrings { get; set; }
+        public string Secret { get; set; }
 
     }
 }

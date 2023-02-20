@@ -10,7 +10,10 @@
     <Folder Include="Models\" />
     <Folder Include="Mappers\" />
     <Folder Include="Dtos\" />
-    <Folder Include="Operations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.27.0" />
   </ItemGroup>
 
 </Project>
