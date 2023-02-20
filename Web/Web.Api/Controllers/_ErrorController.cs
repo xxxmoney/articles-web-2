@@ -33,6 +33,12 @@ namespace Web.Api.Controllers
                 code = HttpStatusCode.BadRequest;
                 this.logger.Warn(exception, "Bad request.");
             }
+            // Checks for not found exception.
+            else if (exception is NotFoundException)
+            {
+                code = HttpStatusCode.NotFound;
+                this.logger.Warn(exception, "Not found.");
+            }
             // Check for fatal exception.
             else if (exception is FatalException)
             {

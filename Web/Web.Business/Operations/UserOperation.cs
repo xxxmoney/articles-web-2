@@ -12,11 +12,24 @@ using Web.Logger;
 
 namespace Web.Business.Operations
 {
+    /// <summary>
+    /// Used for user operations - login, register, etc.
+    /// </summary>
     public interface IUserOperation
     {
         Task<List<User>> GetUsersAsync();
 
+        /// <summary>
+        /// Registers a new user.
+        /// </summary>
+        /// <param name="register"></param>
+        /// <returns></returns>
         Task<User> RegisterAsync(Register register);
+        /// <summary>
+        /// Authenticates user.
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
         Task<LoginResult> LoginAsync(Login login);
     }
     
@@ -60,11 +73,15 @@ namespace Web.Business.Operations
 
             // Check if username exists.
             if (user == null)
-                throw new BadRequestException("User with email: " + login.Email + " does not exist.");
+            {
+                throw new NotFoundException("User with email: " + login.Email + " does not exist.");
+            }
 
             // Checks if password is correct.
             if (!this.hashOperation.VerifyPasswordHash(login.Password, user.PasswordHash, user.PasswordSalt))
+            {
                 throw new BadRequestException("Incorrect password.");
+            }
 
             // Authentication successful.
             return new LoginResult
