@@ -6,6 +6,17 @@ export default {
       "password": "Heslo"
     },
 
+    toast: {
+      success: {
+        title: "OK",
+        description: "V pořádku"
+      },
+      error: {
+        title: "Chyba",
+        description: "Došlo k chybě"
+      }
+    },
+
     main: {
         header: {
             links: {

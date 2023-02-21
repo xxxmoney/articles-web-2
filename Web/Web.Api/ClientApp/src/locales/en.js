@@ -6,6 +6,17 @@ export default {
       "password": "Password",
     },
 
+    toast: {
+      success: {
+        title: "OK",
+        description: "All good"
+      },
+      error: {
+        title: "Error",
+        description: "Something went wrong"
+      }
+    },
+
     main: {
         header: {
             links: {

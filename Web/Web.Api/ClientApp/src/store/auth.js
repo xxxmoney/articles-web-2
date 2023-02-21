@@ -16,7 +16,7 @@ export const useAuthStore = defineStore('auth-store', {
 
     actions: {
         /** Sends request for login and sets user. */
-        async login(email, password) {
+        async loginAsync(email, password) {
           try {
             this.loaded = false;
 
@@ -33,15 +33,15 @@ export const useAuthStore = defineStore('auth-store', {
         },
 
         /** Sends request for register. */
-        async register(name, surname, email, password) {
+        async registerAsync(name, surname, email, password) {
           try {
             this.loaded = false;
 
             await axios.post('auth/register', {
-              name: name,
-              surname: surname,
-              email: email,
-              password: password
+              Name: name,
+              Surname: surname,
+              Email: email,
+              Password: password
             });
           } finally {
             this.loaded = true;
@@ -55,7 +55,7 @@ export const useAuthStore = defineStore('auth-store', {
         },
 
         /** Sends request to verify if user is authenticated. */
-        async verifyAuthenticated() {
+        async verifyAuthenticatedAsync() {
           if (!this.user) {
             return false;
           }

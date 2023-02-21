@@ -1,9 +1,10 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import PrimeVue from 'primevue/config';
-import installI18n from './i18n';
+import i18n from './i18n';
 import router from './router';
 import pinia from './store';
+import ToastService from 'primevue/toastservice';
 
 // Axios initialize.
 import './axios'
@@ -19,8 +20,12 @@ const app = createApp(App);
 // Use PrimeVue.
 app.use(PrimeVue);
 
+// Use PrimeVue ToastService.
+app.use(ToastService);
+
 // Use i18n.
-installI18n(app);
+app.config.globalProperties.$t = i18n.global.t;
+app.use(i18n);
 
 // Use router.
 app.use(router);

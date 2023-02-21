@@ -7,9 +7,5 @@ const i18n = createI18n({
     legacy: false
 });
 
-/** Installs i18n to Vue app. */
-export default function installI18n(app) {
-    app.config.globalProperties.$t = i18n.global.t;
-    app.use(i18n);
-}
+export default i18n;
   

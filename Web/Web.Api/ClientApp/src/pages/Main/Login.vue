@@ -12,30 +12,45 @@
 
     <div></div>
 
-    <Button @click.prevent="submit" :label="$t('main.pages.login.submit')" />
+    <Button @click="submitAsync" :label="$t('main.pages.login.submit')" />
   </div>
 </template>
 
 <script>
   import { ref } from 'vue'
   import { useAuthStore } from '../../store/auth.js'
+  import { useVuelidate } from '@vuelidate/core'
+  import { useI18n } from 'vue-i18n';
+  import { showSuccess, showError } from '../../helpers/ToastHelper.js'
+  import { useToast } from "primevue/usetoast";
 
   export default {
     setup() {
       const authStore = useAuthStore();
+      const v = useVuelidate();
+      const { t } = useI18n();
+      const toast = useToast();
+      
       const model = ref({});
 
-      const submit = () => {
+      const submitAsync = async () => {
         try {
-          authStore.login(model.value.email, model.value.password);
+          // Login with values from model.
+          await authStore.loginAsync(model.value.email, model.value.password);
+
+          showSuccess(toast, t);
+
+          // Navigate to home page.
+          router.push({ name: 'home' });
         } catch (error) {
           console.error(error);
+          showError(toast, t);
         }
       };
 
       return {
         model,
-        submit
+        submitAsync
       }
     }
   }

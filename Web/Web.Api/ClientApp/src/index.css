@@ -66,6 +66,6 @@ body {
 }
 
 .p-component {
-  background: transparent !important;
+  background: var(--background-primary) !important;
   color: var(--text-primary) !important;
 }
