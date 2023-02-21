@@ -4,9 +4,14 @@ const showSuccess = (toast, t) => {
   toast.add({severity:'success', summary: t('toast.success.title'), detail: t('toast.success.description'), life: 1500});
 };
 
-/** Shows error toast with provided toast and translation t function. */
+/** Shows common error toast with provided toast and translation t function. */
 const showError = (toast, t) => {
   toast.add({severity:'error', summary: t('toast.error.title'), detail: t('toast.error.description'), life: 3000});
 };
 
-export { showSuccess, showError }
+/** Shows validation error toast with provided toast and translation t function.  */
+const showValidationError = (toast, t) => {
+  toast.add({severity:'error', summary: t('toast.error.title'), detail: t('toast.success.validation_description'), life: 3000});
+};
+
+export { showSuccess, showError, showValidationError }

@@ -6,6 +6,11 @@ export default {
       "password": "Password",
     },
 
+    validations: {
+      required: "Is required.",
+      requiredIfRef: "Is required."
+    },
+
     toast: {
       success: {
         title: "OK",
@@ -13,7 +18,8 @@ export default {
       },
       error: {
         title: "Error",
-        description: "Something went wrong"
+        description: "Something went wrong",
+        validation_description: "Validation did not pass - some values are not valid."
       }
     },
 

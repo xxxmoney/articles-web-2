@@ -3,21 +3,25 @@
     <div class="form-part">
       <label for="">{{ $t('common.email') }}</label>
       <InputText type="text" v-model="model.email" />
+      <VuelidateMessages :v="v$" propName="email" />
     </div>
 
     <div class="form-part">
       <label for="">{{ $t('common.name') }}</label>
       <InputText type="text" v-model="model.name" />
+      <VuelidateMessages :v="v$" propName="name" />
     </div>
 
     <div class="form-part">
       <label for="">{{ $t('common.surname') }}</label>
       <InputText type="text" v-model="model.surname" />
+      <VuelidateMessages :v="v$" propName="surname" />
     </div>
 
     <div class="form-part">
       <label for="">{{ $t('common.password') }}</label>
       <InputText type="text" v-model="model.password" />
+      <VuelidateMessages :v="v$" propName="password" />
     </div>
 
     <div class="form-part">
@@ -38,15 +42,19 @@
   import { showSuccess, showError } from '../../helpers/ToastHelper.js'
   import { useToast } from "primevue/usetoast"
   import { useRouter } from 'vue-router'
+  import VuelidateMessages from '../../components/ui/VuelidateMessages.vue';
 
   export default {
+    components: {
+      VuelidateMessages
+    },
     setup() {
       const authStore = useAuthStore();
       const { t } = useI18n();
       const toast = useToast();
       const passwordConfirmation = ref();
       const router = useRouter();
-      
+
       const model = ref({});
 
       const submitAsync = () => {

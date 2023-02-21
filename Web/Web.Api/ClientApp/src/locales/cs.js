@@ -3,7 +3,12 @@ export default {
       "email": "Email",
       "name": "Jméno",
       "surname": "Příjmení",
-      "password": "Heslo"
+      "password": "Heslo",
+    },
+
+    validations: {
+      required: "Je požadováno.",
+      requiredIfRef: "Je požadováno."
     },
 
     toast: {
@@ -13,7 +18,8 @@ export default {
       },
       error: {
         title: "Chyba",
-        description: "Došlo k chybě"
+        description: "Došlo k chybě",
+        validation_description: "Došlo k chybě při validaci - některé hodnoty nejsou platné."
       }
     },
 
