@@ -5,6 +5,9 @@ import installI18n from './i18n';
 import router from './router';
 import pinia from './store';
 
+// Axios initialize.
+import './axios'
+
 // Styles import.
 import './index.css'
 import 'primevue/resources/themes/saga-blue/theme.css' // theme

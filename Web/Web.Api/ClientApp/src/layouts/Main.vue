@@ -5,8 +5,12 @@
                 <router-link to="/"><img src="src/assets/vue.svg" alt="Logo" class="logo"></router-link>
             </li>
             <li class="flex-1"></li>
+            <li class="">|</li>
             <li>
-                <router-link to="/"><span></span></router-link>
+                <router-link to="/login"><span>{{ $t('main.header.links.login') }}</span></router-link>
+            </li>
+            <li>
+                <router-link to="/register"><span>{{ $t('main.header.links.register') }}</span></router-link>
             </li>
         </ul>
     </header>

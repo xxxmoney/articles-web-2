@@ -35,5 +35,11 @@ namespace Web.Api.Controllers
             return Ok();
         }
 
+        [HttpGet(nameof(VerifyAuthenticated))]
+        public IActionResult VerifyAuthenticated()
+        {
+            return Ok();
+        }
+
     }
 }
