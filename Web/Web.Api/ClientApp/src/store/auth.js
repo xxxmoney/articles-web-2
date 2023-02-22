@@ -6,12 +6,15 @@ export const useAuthStore = defineStore('auth-store', {
     state: () => {
         return {
             loaded: false,
-            user: null
+            user: LocalUserHelper.getUser()
         }
     },
 
     getters: {
-      
+        /** Returns true if user is logged in. */
+        isLoggedIn() {
+          return !!this.user;
+        }
     },
 
     actions: {

@@ -64,7 +64,7 @@
           showSuccess(toast, t);
 
           // Navigate to home page.
-          router.push({ name: 'home' });
+          await router.push({ name: 'home' });
         } catch (error) {
           console.error(error);
           showError(toast, t, error);

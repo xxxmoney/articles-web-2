@@ -29,7 +29,9 @@ export default {
         header: {
             links: {
                 "login": "Login",
-                "register": "Register"
+                "register": "Register",
+                "profile": "Profile",
+                "logout": "Logout"
             }
         },
         footer: {

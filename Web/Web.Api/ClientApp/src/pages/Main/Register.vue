@@ -92,7 +92,7 @@
           showSuccess(toast, t);
 
           // Navigate to login page.
-          router.push({ name: 'login' });
+          await router.push({ name: 'login' });
         } catch (error) {
           console.error(error);
           showError(toast, t, error);

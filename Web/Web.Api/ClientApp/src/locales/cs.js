@@ -29,7 +29,9 @@ export default {
         header: {
             links: {
                 "login": "Příhlášení",
-                "register": "Registrace"
+                "register": "Registrace",
+                "profile": "Profil",
+                "logout": "Odhlásit se"
             }
         },
         footer: {

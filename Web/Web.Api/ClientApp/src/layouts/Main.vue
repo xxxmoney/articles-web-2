@@ -6,11 +6,17 @@
             </li>
             <li class="flex-1"></li>
             <li class="">|</li>
-            <li>
+            <li v-if="!isLoggedIn">
                 <router-link to="/login"><span>{{ $t('main.header.links.login') }}</span></router-link>
             </li>
-            <li>
+            <li v-if="!isLoggedIn">
                 <router-link to="/register"><span>{{ $t('main.header.links.register') }}</span></router-link>
+            </li>
+            <li v-if="isLoggedIn">
+                <router-link to="/profile"><span>{{ $t('main.header.links.profile') }}</span></router-link>
+            </li>
+            <li v-if="isLoggedIn">
+                <a href="" @click.prevent="logout">{{ $t('main.header.links.logout') }}</a>
             </li>
         </ul>
     </header>
@@ -23,6 +29,31 @@
         <ul class="m-auto max-w-6xl"></ul>
     </footer>
 </template>
+
+<script>
+    import { useAuthStore } from '../store/auth';
+    import { useRouter } from 'vue-router';
+    import { computed } from 'vue';
+
+    export default {
+        setup() {
+            const authStore = useAuthStore();
+            const router = useRouter();
+
+            const isLoggedIn = computed(() => authStore.isLoggedIn);
+            const logout = async () => {
+                authStore.logout();
+
+                await router.push('/');
+            };
+
+            return {
+                isLoggedIn,
+                logout
+            }
+        }
+    }
+</script>
 
 <style>
     #app {        

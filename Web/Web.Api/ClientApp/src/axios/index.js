@@ -5,7 +5,7 @@ import { LocalUserHelper } from '../helpers/LocalUserHelper.js'
 axios.defaults.baseURL = "/api/";
 
 // Set interceptor for assigning token.
-axios.interceptors.request.use(function (config) {
+axios.interceptors.request.use(config => {
     const token = LocalUserHelper.getUser()?.token;    
     config.headers.Authorization = "Bearer " + token;
 
@@ -13,7 +13,7 @@ axios.interceptors.request.use(function (config) {
 });
 
 //Set interceptor for response error.
-axios.interceptors.response.use(function (response) {
+axios.interceptors.response.use(response => {
   return response;
 }, function (error) {
   return Promise.reject(error.response);
