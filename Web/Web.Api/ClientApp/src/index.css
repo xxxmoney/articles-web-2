@@ -21,6 +21,8 @@
     -webkit-text-size-adjust: 100%;
 
     --background-primary: #242424;
+    --background-secondary: rgb(44, 43, 43);
+    --background-secondary-transparent: rgba(54, 54, 54, 0.15);
     --text-primary: rgba(255, 255, 255, 0.87);
 
 }
@@ -62,10 +64,15 @@ body {
 }
 
 .form {
-  @apply flex flex-col gap-5;
+  @apply flex flex-col p-8 gap-5;
+
+  background-color: var(--background-secondary-transparent);
 }
 .form-part {
     @apply flex flex-col gap-2;
+}
+.form-label {
+    @apply text-sm font-medium mb-2;
 }
 
 .p-component {
@@ -74,5 +81,5 @@ body {
 }
 
 .p-dropdown-panel, .p-dropdown-items, .p-dropdown-item, .p-dropdown-label, .p-dropdown, .p-dropdown-panel {    
-    color: var(--text-primary) !important;
+    color: var(--text-primary) !important;    
 }
