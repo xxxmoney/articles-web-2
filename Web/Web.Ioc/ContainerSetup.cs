@@ -44,6 +44,7 @@ namespace Web.Ioc
             // Repositories (and UnitOfWork)
             services.AddTransient<IUnitOfWorkFactory, UnitOfWorkFactory>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IArticleRepository, ArticleRepository>();
 
             // Operations
             services.AddScoped<ITokenOperation, TokenOperation>();

@@ -16,7 +16,7 @@ namespace Web.Data.Repositories
         Task<User> GetByEmailAsync(string email);
     }
 
-    public class UserRepository : Repository<User, int>, IUserRepository
+    public class UserRepository : DatabaseRepository<User, int>, IUserRepository
     {
         public UserRepository(WebContext context) : base(context)
         {

@@ -14,7 +14,7 @@ namespace Web.Data.Repositories
     /// </summary>
     /// <typeparam name="TEntity">Type of entity.</typeparam>
     /// <typeparam name="TIdType">Type of primary key.</typeparam>
-    public interface IRepository<TEntity, TIdType> 
+    public interface IRepository<TEntity, TIdType>
         where TEntity : class
     {
         Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate = null);
@@ -23,19 +23,29 @@ namespace Web.Data.Repositories
         void Remove(TEntity entity);
     }
 
-    public abstract class Repository<TEntity, TIdType> : IRepository<TEntity, TIdType>
+    public abstract class DatabaseRepository<TEntity, TIdType> : IRepository<TEntity, TIdType>
         where TEntity : class
     {
+        protected readonly WebContext context;
         protected readonly DbSet<TEntity> entities;
+        protected readonly Expression<Func<TEntity, object>>[] includes;
 
-        public Repository(WebContext dbContext)
+        public DatabaseRepository(WebContext context, params Expression<Func<TEntity, object>>[] includes)
         {
-            entities = dbContext.Set<TEntity>();
+            this.context = context;
+            this.entities = context.Set<TEntity>();
+            this.includes = includes;
         }
 
         public Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate = null)
         {
             IQueryable<TEntity> query = this.entities;
+
+            // Use includes.
+            foreach (var include in this.includes)
+            {
+                query = query.Include(include);
+            }
 
             // Use predicate if present.
             if (predicate != null)
@@ -48,7 +58,20 @@ namespace Web.Data.Repositories
 
         public async Task<TEntity> GetByIdAsync(TIdType id)
         {
-            return await this.entities.FindAsync(id);
+            var entity = await this.entities.FindAsync(id);
+
+            // Use includes if entity found.
+            if (entity != null)
+            {
+                var query = context.Set<TEntity>().AsQueryable();
+                foreach (var include in includes)
+                {
+                    query = query.Include(include);
+                }
+                await query.LoadAsync();
+            }
+            
+            return entity;
         }
 
         public async Task AddAsync(TEntity entity)
