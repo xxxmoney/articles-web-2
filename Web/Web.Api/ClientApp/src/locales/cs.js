@@ -1,11 +1,15 @@
 export default {
     common: {
-      "email": "Email",
-      "name": "Jméno",
-      "surname": "Příjmení",
-      "password": "Heslo",
-      "detail": "Detail",
-      "by": "Od"
+      email: "Email",
+      name: "Jméno",
+      surname: "Příjmení",
+      password: "Heslo",
+      detail: "Detail",
+      by: "Od",
+      save: "Uložit",
+      delete: "Smazat",
+      confirmation: "Potvrzení",
+      delete_confirmation: "Opravdu chcete smazat tento záznam?"
     },
 
     validations: {

@@ -1,11 +1,15 @@
 export default {
     common: { 
-      "email": "Email",
-      "name": "Name",
-      "surname": "Surname",
-      "password": "Password",
-      "detail": "Detail",
-      "by": "By"
+      email: "Email",
+      name: "Name",
+      surname: "Surname",
+      password: "Password",
+      detail: "Detail",
+      by: "By",
+      save: "Save",
+      delete: "Delete",
+      confirmation: "Confirmation",
+      delete_confirmation: "Are you sure you want to delete this record?"
     },
 
     validations: {

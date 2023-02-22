@@ -21,6 +21,13 @@ namespace Web.Api.Controllers
             return Ok(result);
         }
 
+        [HttpGet(nameof(GetById))]
+        public async Task<IActionResult> GetById([FromQuery] int id)
+        {
+            var result = await articleOperation.GetByIdAsync(id);
+            return Ok(result);
+        }
+
         [Authorize]
         [HttpPost(nameof(Upsert))]
         public async Task<IActionResult> Upsert([FromBody] ArticleUpsert upsert)

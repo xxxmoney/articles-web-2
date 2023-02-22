@@ -24,6 +24,7 @@
     --background-secondary: rgb(44, 43, 43);
     --background-secondary-transparent: rgba(54, 54, 54, 0.15);
     --text-primary: rgba(255, 255, 255, 0.87);
+    --text-highlight: #3b44f0;
 
 }
 
@@ -32,11 +33,14 @@ a {
     text-decoration: inherit;
 }
 a:hover {
-    color: #3b44f0;
+    color: var(--text-highlight);
 }
 
 .router-link-active {
     color: #535bf2;
+}
+.text-hover-highlight:hover {
+    color: var(--text-highlight);
 }
 
 h1 {

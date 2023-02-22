@@ -20,6 +20,13 @@ namespace Web.Business.Operations
         Task<List<Article>> GetArticlesAsync(ArticleFilter filter);
 
         /// <summary>
+        /// Gets article by its id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<Article> GetByIdAsync(int id);
+
+        /// <summary>
         /// Inserts or updates article.
         /// </summary>
         /// <param name="article"></param>
@@ -66,10 +73,16 @@ namespace Web.Business.Operations
         {
             // Filter articles based on filter.
             var articles = await this.articleRepository.GetAllAsync(article =>
-                filter.ArticleId == null || filter.ArticleId == article.Id &&
                 filter.UserId == null || filter.UserId == article.UserId);
 
             return this.mapper.Map<List<Article>>(articles);
+        }
+
+        public async Task<Article> GetByIdAsync(int id)
+        {
+            var model = await this.articleRepository.GetByIdAsync(id);
+
+            return this.mapper.Map<Article>(model);
         }
 
         public async Task<Article> UpsertArticleAsync(ArticleUpsert upsert, int userId)
@@ -135,5 +148,6 @@ namespace Web.Business.Operations
                 
             }
         }
+        
     }
 }

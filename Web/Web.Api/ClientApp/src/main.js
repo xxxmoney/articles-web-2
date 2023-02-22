@@ -6,6 +6,7 @@ import router from './router';
 import pinia from './store';
 import ToastService from 'primevue/toastservice';
 import Loading from './components/ui/Loading.vue';
+import ConfirmationService from 'primevue/confirmationservice';
 
 // Axios initialize.
 import './axios'
@@ -23,6 +24,9 @@ app.use(PrimeVue);
 
 // Use PrimeVue ToastService.
 app.use(ToastService);
+
+// Use Primevue ConfirmService.
+app.use(ConfirmationService);
 
 // Use i18n.
 app.config.globalProperties.$t = i18n.global.t;
