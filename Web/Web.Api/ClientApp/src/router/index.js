@@ -1,9 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useAuthStore } from '../store/auth'
 import MainLayout from '../layouts/Main.vue'
 import Home from '../pages/Main/Home.vue'
 import Login from '../pages/Main/Login.vue'
 import Register from '../pages/Main/Register.vue'
-import { useAuthStore } from '../store/auth'
+import Articles from '../pages/Main/Articles.vue'
+import Article from '../pages/Main/Article.vue'
 
 const routes = [
   { 
@@ -12,7 +14,9 @@ const routes = [
     children: [
       { name: 'home', path: '', component: Home },  
       { name: 'login', path: 'login', component: Login },
-      { name: 'register', path: 'register', component: Register }
+      { name: 'register', path: 'register', component: Register },
+      { name: 'articles', path: 'articles', component: Articles },
+      { name: 'article', path: 'article/:id?', component: Article },
     ]
   }
 ]

@@ -17,8 +17,10 @@ namespace Web.Business.Dtos
 
     public class LoginResult
     {
+        public int Id { get; set; }
         public string Token { get; set; }
-        public string Fullname { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
         public string Email { get; set; }
     }
 }

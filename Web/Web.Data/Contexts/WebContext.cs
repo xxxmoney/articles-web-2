@@ -48,6 +48,31 @@ namespace Web.Data.Contexts
                     .HasMaxLength(128)
                     .IsFixedLength(true);
             });
+
+            modelBuilder.Entity<Article>(entity =>
+            {
+                entity.ToTable(nameof(Article), "dbo");
+
+                entity.Property(e => e.Title)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Content)
+                    .IsRequired()
+                    .HasColumnType("text");
+
+                entity.Property(e => e.CreatedAt)
+                    .IsRequired();
+
+                entity.Property(e => e.UpdatedAt)
+                    .IsRequired();
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Articles)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_Article_User");
+            });
         }
 
     }

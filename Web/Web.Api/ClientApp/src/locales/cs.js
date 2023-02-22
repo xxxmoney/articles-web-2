@@ -1,9 +1,16 @@
 export default {
     common: {
-      "email": "Email",
-      "name": "Jméno",
-      "surname": "Příjmení",
-      "password": "Heslo",
+      email: "Email",
+      name: "Jméno",
+      surname: "Příjmení",
+      password: "Heslo",
+      detail: "Detail",
+      by: "Od",
+      save: "Uložit",
+      delete: "Smazat",
+      confirmation: "Potvrzení",
+      delete_confirmation: "Opravdu chcete smazat tento záznam?",
+      create: "Vytvořit"
     },
 
     validations: {
@@ -28,6 +35,8 @@ export default {
     main: {
         header: {
             links: {
+                "home": "Hlavní stránka",
+                "articles": "Články",
                 "login": "Příhlášení",
                 "register": "Registrace",
                 "profile": "Profil",

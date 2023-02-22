@@ -1,9 +1,16 @@
 export default {
     common: { 
-      "email": "Email",
-      "name": "Name",
-      "surname": "Surname",
-      "password": "Password",
+      email: "Email",
+      name: "Name",
+      surname: "Surname",
+      password: "Password",
+      detail: "Detail",
+      by: "By",
+      save: "Save",
+      delete: "Delete",
+      confirmation: "Confirmation",
+      delete_confirmation: "Are you sure you want to delete this record?",
+      create: "Create"
     },
 
     validations: {
@@ -28,6 +35,8 @@ export default {
     main: {
         header: {
             links: {
+                "home": "Home",
+                "articles": "Articles",
                 "login": "Login",
                 "register": "Register",
                 "profile": "Profile",

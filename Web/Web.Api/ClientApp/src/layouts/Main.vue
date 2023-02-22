@@ -1,10 +1,16 @@
 <template>
-    <header class="p-6">
-        <ul class="flex flex-col md:flex-row items-center gap-4 m-auto max-w-6xl md:sticky">
+    <header class="p-6 md:sticky md:top-0">
+        <ul class="flex flex-col sm:flex-row items-center gap-4 m-auto max-w-6xl">                      
             <li>
-                <router-link to="/"><img src="src/assets/logo.svg" alt="Logo" class="logo"></router-link>
+                <router-link to="/"><img src="/src/assets/logo.png" alt="Logo" class="logo"></router-link>
             </li>
             <li class="flex-1"></li>
+            <li v-if="!isHome">
+                <a href="#" @click.prevent="goHomeAsync"><span>{{ $t('main.header.links.home') }}</span></a>
+            </li>  
+            <li>
+                <router-link to="/articles"><span>{{ $t('main.header.links.articles') }}</span></router-link>
+            </li>  
             <li class="hidden md:block">|</li>
             <li v-if="!isLoggedIn">
                 <router-link to="/login"><span>{{ $t('main.header.links.login') }}</span></router-link>
@@ -36,7 +42,7 @@
 
 <script>
     import { useAuthStore } from '../store/auth';
-    import { useRouter } from 'vue-router';
+    import { useRoute, useRouter } from 'vue-router';
     import { computed } from 'vue';
     import LocaleSwitcher from '../components/layout/LocaleSwitcher.vue';
 
@@ -47,6 +53,10 @@
         setup() {
             const authStore = useAuthStore();
             const router = useRouter();
+            const route = useRoute();
+
+            // Computed of whether current route is /.
+            const isHome = computed(() => route.path === '/');
 
             const isLoggedIn = computed(() => authStore.isLoggedIn);
             const logout = async () => {
@@ -55,8 +65,15 @@
                 await router.push('/');
             };
 
+            // Goes to home page.
+            const goHomeAsync = async () => {
+                await router.push('/');
+            };
+
             return {
                 isLoggedIn,
+                isHome,
+                goHomeAsync,
                 logout
             }
         }
@@ -66,6 +83,7 @@
 <style>
     #app {        
         padding-block: 1rem;
+        padding-top: 0;
 
         display: flex;
         flex-direction: column;
@@ -73,15 +91,13 @@
     } 
 
     header {
-        background-color: rgba(54, 54, 54, 0.5);
+        background-color: var(--background-secondary);
 
-        border: 1px solid rgba(54, 54, 54, 0.5);
-        border-radius: 0.1rem;
-        box-shadow: 0 0 0 3px rgba(54, 54, 54, 0.3);        
+        border-radius: 0.1rem;     
     }
 
     .logo {
-        width: 2.5rem;
-        height: 2.5rem;
+        width: 3rem;
+        height: 3rem;
     }
 </style>

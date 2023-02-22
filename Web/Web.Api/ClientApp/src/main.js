@@ -1,10 +1,13 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from 'vue';
+import App from './App.vue';
 import PrimeVue from 'primevue/config';
 import i18n from './i18n';
 import router from './router';
 import pinia from './store';
 import ToastService from 'primevue/toastservice';
+import Loading from './components/ui/Loading.vue';
+import ConfirmationService from 'primevue/confirmationservice';
+import TinyMCE from '@tinymce/tinymce-vue'
 
 // Axios initialize.
 import './axios'
@@ -23,6 +26,9 @@ app.use(PrimeVue);
 // Use PrimeVue ToastService.
 app.use(ToastService);
 
+// Use Primevue ConfirmService.
+app.use(ConfirmationService);
+
 // Use i18n.
 app.config.globalProperties.$t = i18n.global.t;
 app.use(i18n);
@@ -32,5 +38,8 @@ app.use(router);
 
 // Use pinia.
 app.use(pinia);
+
+// TinyMCE editor.
+app.component('TinyMCE', TinyMCE);
 
 app.mount('#app');

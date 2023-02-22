@@ -17,6 +17,10 @@ namespace Web.Business.Operations
     /// </summary>
     public interface IUserOperation
     {
+        /// <summary>
+        /// Gets all users.
+        /// </summary>
+        /// <returns></returns>
         Task<List<User>> GetUsersAsync();
 
         /// <summary>
@@ -86,9 +90,11 @@ namespace Web.Business.Operations
             // Authentication successful.
             return new LoginResult
             {
+                Id = user.Id,
                 Token = this.tokenOperation.CreateToken(user.Id.ToString(), this.configuration.Secret),
                 Email = user.Email,
-                Fullname = user.Name + " " + user.Surname
+                Name = user.Name,
+                Surname = user.Surname
             };
         }
 

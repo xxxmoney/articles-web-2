@@ -1,13 +1,13 @@
 <template>
   <div class="m-auto max-w-xs form">
     <div class="form-part">
-      <label for="">{{ $t('common.email') }}</label>
+      <label class="form-label">{{ $t('common.email') }}</label>
       <InputText type="text" v-model="model.email" />
       <VuelidateMessages :v="v$" propName="email" />
     </div>
 
     <div class="form-part">
-      <label for="">{{ $t('common.password') }}</label>
+      <label class="form-label">{{ $t('common.password') }}</label>
       <InputText type="password" v-model="model.password" />
       <VuelidateMessages :v="v$" propName="password" />
     </div>
