@@ -1,10 +1,11 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from 'vue';
+import App from './App.vue';
 import PrimeVue from 'primevue/config';
 import i18n from './i18n';
 import router from './router';
 import pinia from './store';
 import ToastService from 'primevue/toastservice';
+import Loading from './components/ui/Loading.vue';
 
 // Axios initialize.
 import './axios'

@@ -4,6 +4,8 @@ export default {
       "name": "Jméno",
       "surname": "Příjmení",
       "password": "Heslo",
+      "detail": "Detail",
+      "by": "Od"
     },
 
     validations: {
@@ -28,6 +30,8 @@ export default {
     main: {
         header: {
             links: {
+                "home": "Hlavní stránka",
+                "articles": "Články",
                 "login": "Příhlášení",
                 "register": "Registrace",
                 "profile": "Profil",

@@ -18,6 +18,7 @@ namespace Web.Business.Dtos
 
     public class ArticleFilter
     {
+        public int? ArticleId { get; set; }
         public int? UserId { get; set; }
     }
 

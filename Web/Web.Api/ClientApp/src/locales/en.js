@@ -4,6 +4,8 @@ export default {
       "name": "Name",
       "surname": "Surname",
       "password": "Password",
+      "detail": "Detail",
+      "by": "By"
     },
 
     validations: {
@@ -28,6 +30,8 @@ export default {
     main: {
         header: {
             links: {
+                "home": "Home",
+                "articles": "Articles",
                 "login": "Login",
                 "register": "Register",
                 "profile": "Profile",

@@ -64,7 +64,10 @@ namespace Web.Business.Operations
 
         public async Task<List<Article>> GetArticlesAsync(ArticleFilter filter)
         {
-            var articles = await this.articleRepository.GetAllAsync(article => filter.UserId == null || filter.UserId == article.UserId);
+            // Filter articles based on filter.
+            var articles = await this.articleRepository.GetAllAsync(article =>
+                filter.ArticleId == null || filter.ArticleId == article.Id &&
+                filter.UserId == null || filter.UserId == article.UserId);
 
             return this.mapper.Map<List<Article>>(articles);
         }
