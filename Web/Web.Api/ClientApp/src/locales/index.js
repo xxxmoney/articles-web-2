@@ -9,10 +9,12 @@ const messages = {
 const locales = {
     en: {
         name: 'English',
+        code: 'en',
         value: 0
     },
     cs: {
         name: 'Čeština',
+        code: 'cs',
         value: 1
     }
 };
