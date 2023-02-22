@@ -17,9 +17,33 @@ namespace Web.Data.Repositories
     public interface IRepository<TEntity, TIdType>
         where TEntity : class
     {
+        /// <summary>
+        /// Gets given entities by predicate if specified.
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
         Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate = null);
+        /// <summary>
+        /// Gets entity by primary key.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         Task<TEntity> GetByIdAsync(TIdType id);
+        /// <summary>
+        /// Adds new entity.
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         Task AddAsync(TEntity entity);
+        /// <summary>
+        /// Updates entity.
+        /// </summary>
+        /// <param name="entity"></param>
+        void Update(TEntity entity);
+        /// <summary>
+        /// Removes entity.
+        /// </summary>
+        /// <param name="entity"></param>
         void Remove(TEntity entity);
     }
 
@@ -78,10 +102,16 @@ namespace Web.Data.Repositories
         {
             await entities.AddAsync(entity);
         }
+        
+        public void Update(TEntity entity)
+        {
+            entities.Update(entity);
+        }
 
         public void Remove(TEntity entity)
         {
             entities.Remove(entity);
         }
+
     }
 }

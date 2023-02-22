@@ -50,10 +50,11 @@ namespace Web.Ioc
             services.AddScoped<ITokenOperation, TokenOperation>();
             services.AddScoped<IPasswordHashOperation, PasswordHashOperation>();
             services.AddScoped<IUserOperation, UserOperation>();
+            services.AddScoped<IArticleOperation, ArticleOperation>();
 
             // Services
 
-            
+
             return services;
         }
 

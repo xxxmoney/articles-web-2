@@ -11,7 +11,12 @@ namespace Web.Business.Mappers
     {
         public UserMapper()
         {
+            // User
             CreateMap<Data.Models.User, Dtos.User>();
+
+            // Article
+            CreateMap<Data.Models.Article, Dtos.Article>();
+            CreateMap<Dtos.ArticleUpsert, Data.Models.Article>();
         }
     }
 }

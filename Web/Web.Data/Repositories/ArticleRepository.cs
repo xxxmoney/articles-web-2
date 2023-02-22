@@ -9,14 +9,13 @@ using Web.Data.Models;
 namespace Web.Data.Repositories
 {
     public interface IArticleRepository : IRepository<Article, int>
-    {        
+    {
     }
 
     public class ArticleRepository : DatabaseRepository<Article, int>, IArticleRepository
     {
-        public ArticleRepository(WebContext context) : base(context)
+        public ArticleRepository(WebContext context) : base(context, article => article.User)
         {
-        }
-        
+        }        
     }
 }
