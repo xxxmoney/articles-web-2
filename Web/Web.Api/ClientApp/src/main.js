@@ -7,6 +7,7 @@ import pinia from './store';
 import ToastService from 'primevue/toastservice';
 import Loading from './components/ui/Loading.vue';
 import ConfirmationService from 'primevue/confirmationservice';
+import TinyMCE from '@tinymce/tinymce-vue'
 
 // Axios initialize.
 import './axios'
@@ -37,5 +38,8 @@ app.use(router);
 
 // Use pinia.
 app.use(pinia);
+
+// TinyMCE editor.
+app.component('TinyMCE', TinyMCE);
 
 app.mount('#app');

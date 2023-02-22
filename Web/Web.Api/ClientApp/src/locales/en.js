@@ -9,7 +9,8 @@ export default {
       save: "Save",
       delete: "Delete",
       confirmation: "Confirmation",
-      delete_confirmation: "Are you sure you want to delete this record?"
+      delete_confirmation: "Are you sure you want to delete this record?",
+      create: "Create"
     },
 
     validations: {

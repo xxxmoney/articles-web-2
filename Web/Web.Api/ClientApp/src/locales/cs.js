@@ -9,7 +9,8 @@ export default {
       save: "Uložit",
       delete: "Smazat",
       confirmation: "Potvrzení",
-      delete_confirmation: "Opravdu chcete smazat tento záznam?"
+      delete_confirmation: "Opravdu chcete smazat tento záznam?",
+      create: "Vytvořit"
     },
 
     validations: {
