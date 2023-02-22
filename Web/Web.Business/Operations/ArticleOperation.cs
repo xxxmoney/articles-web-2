@@ -73,7 +73,7 @@ namespace Web.Business.Operations
         {
             Data.Models.Article model;
 
-            // Saves changes.
+            // Save changes.
             using (var unitOfWork = this.unitOfWorkFactory.Create())
             {
                 try
@@ -82,17 +82,20 @@ namespace Web.Business.Operations
                     if (!upsert.Id.HasValue)
                     {
                         model = new Data.Models.Article() { UserId = userId };
-
+                        await this.articleRepository.AddAsync(model);
+                        model.CreatedAt = DateTime.UtcNow;
+                        model.UpdatedAt = DateTime.UtcNow;
                     }
                     // Id is not null - update.
                     else
                     {
                         model = await this.articleRepository.GetByIdAsync(upsert.Id.Value);
+                        model.UpdatedAt = DateTime.UtcNow;
                     }
 
                     CheckUserId(userId, model);
 
-                    // Maps changes.
+                    // Map changes.
                     this.mapper.Map(upsert, model);
 
                     await unitOfWork.CommitAsync();
