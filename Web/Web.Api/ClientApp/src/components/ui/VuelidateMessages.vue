@@ -3,9 +3,9 @@
     {{ error.$message }}
   </InlineMessage> -->
 
-  <Message v-for="error of v[propName].$errors" severity="error" :key="error.$uid">
-    {{error.$message}}
-  </Message>
+  <span v-for="error of v[propName].$errors" :key="error.$uid" class="text-red-500 text-sm italic">
+    {{ error.$message }}
+  </span>
 </template>
 
 <script>

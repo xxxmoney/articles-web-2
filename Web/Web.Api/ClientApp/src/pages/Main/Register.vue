@@ -20,18 +20,19 @@
 
     <div class="form-part">
       <label for="">{{ $t('common.password') }}</label>
-      <InputText type="text" v-model="model.password" />
+      <InputText type="password" v-model="model.password" />
       <VuelidateMessages :v="v$" propName="password" />
     </div>
 
     <div class="form-part">
       <label for="">{{ $t('main.pages.register.password_confirmation') }}</label>
-      <InputText type="text" v-model="passwordConfirmation" />
+      <InputText type="password" v-model="model.passwordConfirmation" />
+      <VuelidateMessages :v="v$" propName="passwordConfirmation" />
     </div>
 
     <div></div>
 
-    <Button :label="$t('main.pages.register.submit')" />
+    <Button @click="submitAsync" :label="$t('main.pages.register.submit')" />
   </div>
 </template>
 
@@ -42,6 +43,8 @@
   import { showSuccess, showError } from '../../helpers/ToastHelper.js'
   import { useToast } from "primevue/usetoast"
   import { useRouter } from 'vue-router'
+  import { useVuelidate } from '@vuelidate/core'
+  import { required, email, createIsEqual } from '../../vuelidate';
   import VuelidateMessages from '../../components/ui/VuelidateMessages.vue';
 
   export default {
@@ -52,15 +55,39 @@
       const authStore = useAuthStore();
       const { t } = useI18n();
       const toast = useToast();
-      const passwordConfirmation = ref();
       const router = useRouter();
 
       const model = ref({});
+      const equal = createIsEqual(() => model.value.password);
+      const rules = {
+          name: {
+              required
+          },
+          surname: {
+              required
+          },
+          email: {
+              required, email
+          },
+          password: {
+              required
+          },
+          passwordConfirmation: {
+              required, equal
+          },
+      }
+      const v$ = useVuelidate(rules, model);
 
-      const submitAsync = () => {
+      const submitAsync = async () => {
         try {
+          // Validate model.
+          const isValid = await v$.value.$validate();
+          if (!isValid) {
+            return;
+          }
+
           // Register with values from model.
-          authStore.registerAsync(model.value.name, model.value.surname, model.value.email, model.value.password);
+          await authStore.registerAsync(model.value.name, model.value.surname, model.value.email, model.value.password);
 
           showSuccess(toast, t);
 
@@ -68,13 +95,13 @@
           router.push({ name: 'login' });
         } catch (error) {
           console.error(error);
-          showError(toast, t);
+          showError(toast, t, error);
         }
       };
 
       return {
         model,
-        passwordConfirmation,
+        v$,
         submitAsync
       }
     }

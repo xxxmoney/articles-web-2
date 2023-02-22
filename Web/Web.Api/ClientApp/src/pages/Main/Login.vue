@@ -21,11 +21,11 @@
 <script>
   import { ref } from 'vue'
   import { useAuthStore } from '../../store/auth.js'
-  import { useVuelidate } from '@vuelidate/core'
   import { useI18n } from 'vue-i18n';
-  import { showSuccess, showError, showValidationError } from '../../helpers/ToastHelper.js'
+  import { showSuccess, showError } from '../../helpers/ToastHelper.js'
   import { useToast } from "primevue/usetoast";
   import { useRouter } from 'vue-router'
+  import { useVuelidate } from '@vuelidate/core'
   import { required, email } from '../../vuelidate';
   import VuelidateMessages from '../../components/ui/VuelidateMessages.vue';
 
@@ -35,7 +35,6 @@
     },
     setup() {
       const authStore = useAuthStore();
-      const v = useVuelidate();
       const { t } = useI18n();
       const toast = useToast();
       const router = useRouter();
@@ -43,12 +42,10 @@
       const model = ref({});
       const rules = {
           email: {
-              required, email,
-              $autoDirty: true
+              required, email
           },
           password: {
-              required, 
-              $autoDirty: true
+              required
           }
       }
       const v$ = useVuelidate(rules, model);
@@ -58,7 +55,6 @@
           // Validate model.
           const isValid = await v$.value.$validate();
           if (!isValid) {
-            showValidationError(toast, t);
             return;
           }
 
@@ -71,7 +67,7 @@
           router.push({ name: 'home' });
         } catch (error) {
           console.error(error);
-          showError(toast, t);
+          showError(toast, t, error);
         }
       };
 

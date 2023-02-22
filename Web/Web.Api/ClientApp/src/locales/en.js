@@ -8,7 +8,9 @@ export default {
 
     validations: {
       required: "Is required.",
-      requiredIfRef: "Is required."
+      requiredIfRef: "Is required.",
+      email: "Email is not valid.",
+      is_equal: "Values do not match."
     },
 
     toast: {
@@ -19,7 +21,7 @@ export default {
       error: {
         title: "Error",
         description: "Something went wrong",
-        validation_description: "Validation did not pass - some values are not valid."
+        validation_description: "Incorrect values."
       }
     },
 

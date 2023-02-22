@@ -8,7 +8,9 @@ export default {
 
     validations: {
       required: "Je požadováno.",
-      requiredIfRef: "Je požadováno."
+      requiredIfRef: "Je požadováno.",
+      email: "Email není platný.",
+      is_equal: "Hodnoty se neshodují."
     },
 
     toast: {
@@ -19,7 +21,7 @@ export default {
       error: {
         title: "Chyba",
         description: "Došlo k chybě",
-        validation_description: "Došlo k chybě při validaci - některé hodnoty nejsou platné."
+        validation_description: "Některé hodnoty nejsou platné."
       }
     },
 
