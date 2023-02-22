@@ -72,3 +72,7 @@ body {
   background: var(--background-primary) !important;
   color: var(--text-primary) !important;
 }
+
+.p-dropdown-panel, .p-dropdown-items, .p-dropdown-item, .p-dropdown-label, .p-dropdown, .p-dropdown-panel {    
+    color: var(--text-primary) !important;
+}

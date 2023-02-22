@@ -1,11 +1,11 @@
 <template>
     <header class="p-6">
-        <ul class="flex flex-row items-center gap-4 m-auto max-w-6xl">
+        <ul class="flex flex-col md:flex-row items-center gap-4 m-auto max-w-6xl md:sticky">
             <li>
-                <router-link to="/"><img src="src/assets/vue.svg" alt="Logo" class="logo"></router-link>
+                <router-link to="/"><img src="src/assets/logo.svg" alt="Logo" class="logo"></router-link>
             </li>
             <li class="flex-1"></li>
-            <li class="">|</li>
+            <li class="hidden md:block">|</li>
             <li v-if="!isLoggedIn">
                 <router-link to="/login"><span>{{ $t('main.header.links.login') }}</span></router-link>
             </li>
@@ -17,6 +17,10 @@
             </li>
             <li v-if="isLoggedIn">
                 <a href="" @click.prevent="logout">{{ $t('main.header.links.logout') }}</a>
+            </li>
+            <li class="hidden md:block">|</li>
+            <li>
+                <LocaleSwitcher />
             </li>
         </ul>
     </header>
@@ -34,8 +38,12 @@
     import { useAuthStore } from '../store/auth';
     import { useRouter } from 'vue-router';
     import { computed } from 'vue';
+    import LocaleSwitcher from '../components/layout/LocaleSwitcher.vue';
 
     export default {
+        components: {
+            LocaleSwitcher
+        },
         setup() {
             const authStore = useAuthStore();
             const router = useRouter();
