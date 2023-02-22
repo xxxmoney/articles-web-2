@@ -11,7 +11,7 @@ namespace Web.Logger
     /// <summary>
     /// Configuration for Serilog database logger.
     /// </summary>
-    public class Configuration
+    public class LoggerConfiguration
     {
         public string ConnectionString { get; set; }
         public ColumnOptions ColumnOptions { get; set; }

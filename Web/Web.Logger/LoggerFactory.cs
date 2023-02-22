@@ -18,12 +18,12 @@ namespace Web.Logger
         /// </summary>
         /// <param name="configuration"></param>
         /// <returns></returns>
-        ILogger CreateLogger(Configuration configuration);
+        ILogger CreateLogger(LoggerConfiguration configuration);
     }
 
     public class LoggerFactory : ILoggerFactory
     {
-        public ILogger CreateLogger(Configuration configuration)
+        public ILogger CreateLogger(LoggerConfiguration configuration)
         {
             var columnOptions = configuration.ColumnOptions;
 
@@ -36,7 +36,7 @@ namespace Web.Logger
             columnOptions.Store.Add(StandardColumn.Exception);
 
             // Create logger.
-            var seriloger = new LoggerConfiguration()
+            var seriloger = new Serilog.LoggerConfiguration()
                 .WriteTo.MSSqlServer(
                     connectionString: configuration.ConnectionString,
                     columnOptions: columnOptions,

@@ -1,10 +1,15 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Web.Business.Mappers;
+using Web.Business.Operations;
+using Web.Data.Contexts;
+using Web.Data.Repositories;
 
 namespace Web.Ioc
 {
@@ -27,15 +32,27 @@ namespace Web.Ioc
                 services.AddSingleton(logger);
             }
 
-            // Contexts            
+            // Mappers
+            services.AddAutoMapper(typeof(UserMapper));
 
-            // Repositories
+            // Contexts            
+            services.AddDbContext<WebContext>(options =>
+            {
+                options.UseSqlServer(configuration.ConnectionStrings["Web"]);
+            });
+
+            // Repositories (and UnitOfWork)
+            services.AddTransient<IUnitOfWorkFactory, UnitOfWorkFactory>();
+            services.AddTransient<IUserRepository, UserRepository>();
 
             // Operations
+            services.AddScoped<ITokenOperation, TokenOperation>();
+            services.AddScoped<IPasswordHashOperation, PasswordHashOperation>();
+            services.AddScoped<IUserOperation, UserOperation>();
 
             // Services
 
-
+            
             return services;
         }
 

@@ -26,10 +26,23 @@ namespace Web.Api.Controllers
             var context = HttpContext.Features.Get<IExceptionHandlerFeature>();
             var exception = context.Error;
             var code = HttpStatusCode.InternalServerError;
-            if (exception is FatalException)
+
+            // Check for bad request or not found exception.
+            if (exception is BadRequestException || exception is NotFoundException)
+            {
+                code = HttpStatusCode.BadRequest;
+                this.logger.Warn(exception, "Bad request.");
+            }
+            // Check for fatal exception.
+            else if (exception is FatalException)
+            {
                 this.logger.Fatal(exception.ToString());
+            }
+            // Else just log the exception as error.
             else
+            {
                 this.logger.Error(exception, "Error.");
+            }
 
             Response.StatusCode = (int)code;
 
