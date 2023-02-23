@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Web.Business.Dtos
+﻿namespace Web.Business.Dtos
 {
     public class Article
     {
         public int Id { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
+        public string PictureName { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         public User User { get; set; }
@@ -26,5 +21,11 @@ namespace Web.Business.Dtos
         public int? Id { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
+    }
+
+    public class ArticlePictureUpload
+    {
+        public int ArticleId { get; set; }
+        public string PictureBase64 { get; set; }
     }
 }

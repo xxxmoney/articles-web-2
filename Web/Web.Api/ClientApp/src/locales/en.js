@@ -10,7 +10,8 @@ export default {
       delete: "Delete",
       confirmation: "Confirmation",
       delete_confirmation: "Are you sure you want to delete this record?",
-      create: "Create"
+      create: "Create",
+      upload: "Upload"
     },
 
     validations: {
@@ -50,7 +51,7 @@ export default {
         pages: {
             home: {
               title: "Welcome",
-              subtitle: "Welcome to GreatArticles website, where you can read articles and write your own articles.",
+              subtitle: "Welcome to GreatArticles website, where you can read and write your own articles.",
               get_started: "Get Started"
             },
             login: {

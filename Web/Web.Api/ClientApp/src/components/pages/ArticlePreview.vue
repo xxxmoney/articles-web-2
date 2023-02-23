@@ -1,7 +1,7 @@
 <template>
     <div class="card max-w-md bg-base-100 shadow-xl" v-if="article">
         <figure class="image-full h-52 cursor-pointer" @click="goToDetailAsync">
-            <Image :src="article.image ?? '/src/assets/default_thumb.jpg'" class="object-cover" />
+            <Image :withImagesPath="true" :src="article.pictureName" class="object-cover" />
         </figure>
         <div class="card-body gap-3">
             <h2 class="card-title text-2xl">{{ article.title }}</h2>

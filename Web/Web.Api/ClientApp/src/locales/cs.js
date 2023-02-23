@@ -10,7 +10,8 @@ export default {
       delete: "Smazat",
       confirmation: "Potvrzení",
       delete_confirmation: "Opravdu chcete smazat tento záznam?",
-      create: "Vytvořit"
+      create: "Vytvořit",
+      upload: "Nahrát"
     },
 
     validations: {
@@ -50,7 +51,7 @@ export default {
         pages: {
             home: {
                 title: "Vítejte",
-                subtitle: "Vítejte na webu GreatArticles, kde můžete číst články a psát vlastní články.",
+                subtitle: "Vítejte na webu GreatArticles, kde můžete číst a psát vlastní články.",
                 get_started: "Začít"
             },
             login: {

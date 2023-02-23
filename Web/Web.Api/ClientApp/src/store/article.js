@@ -65,6 +65,21 @@ export const useArticleStore = defineStore('article-store', {
             }
         },
 
+        async uploadPictureAsync(base64) {
+            try {
+                this.loaded = false;
+
+                const response = await axios.post('article/uploadPicture', {
+                    articleId: this.current.id,
+                    pictureBase64: base64
+                });
+
+                this.current = response.data;
+            } finally {
+                this.loaded = true;
+            }
+        },
+
         async deleteArticleAsync() {
             try {
                 this.loaded = false;

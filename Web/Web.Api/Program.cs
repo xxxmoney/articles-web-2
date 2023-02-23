@@ -101,12 +101,12 @@ namespace Web
 
             // Add exception handler.
             app.UseExceptionHandler("/error");
-        
+
             app.UseRouting();
-            
+
             app.UseAuthentication();
             app.UseAuthorization();
-            
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
@@ -114,6 +114,7 @@ namespace Web
 
             // Add SPA support.
             app.UseSpaStaticFiles();
+            app.UseStaticFiles();
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";
@@ -128,7 +129,7 @@ namespace Web
                 {
                     spa.UseProxyToSpaDevelopmentServer("http://localhost:8080");
                 }
-            });          
+            });
 
             app.Run();
         }
