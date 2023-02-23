@@ -1,9 +1,4 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Web.Business.Dtos;
 using Web.Business.Exceptions;
 using Web.Data.Repositories;
@@ -24,6 +19,12 @@ namespace Web.Business.Operations
         Task<List<User>> GetUsersAsync();
 
         /// <summary>
+        /// Gets user by specified id.
+        /// </summary>
+        /// <returns></returns>
+        Task<User> GetUserByIdAsync(int id);
+
+        /// <summary>
         /// Registers a new user.
         /// </summary>
         /// <param name="register"></param>
@@ -36,7 +37,7 @@ namespace Web.Business.Operations
         /// <returns></returns>
         Task<LoginResult> LoginAsync(Login login);
     }
-    
+
     public class UserOperation : IUserOperation
     {
         private readonly ILogger logger;
@@ -69,6 +70,13 @@ namespace Web.Business.Operations
         {
             var users = await userRepository.GetAllAsync();
             return mapper.Map<List<User>>(users);
+        }
+
+        public async Task<User> GetUserByIdAsync(int id)
+        {
+            var model = await this.userRepository.GetByIdAsync(id);
+
+            return this.mapper.Map<User>(model);
         }
 
         public async Task<LoginResult> LoginAsync(Login login)

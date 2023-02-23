@@ -51,7 +51,7 @@
                 await router.push('/article/' + article.value.id);
             }
             const goToUserAsync = async () => {
-                await router.push('/profile/' + article.value.user.id);
+                await router.push('/user/' + article.value.user.id);
             }
 
             return {

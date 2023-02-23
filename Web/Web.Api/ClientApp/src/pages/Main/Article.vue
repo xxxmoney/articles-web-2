@@ -165,7 +165,7 @@ export default {
         });
 
         const goToUserAsync = async () => {
-            await router.push("/profile/" + article.value.user?.id);
+            await router.push("/user/" + article.value.user?.id);
         };
 
         const canEdit = computed(() => {
