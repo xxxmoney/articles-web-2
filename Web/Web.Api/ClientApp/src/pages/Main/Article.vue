@@ -14,7 +14,19 @@
                 </Inplace>
             </div>
             <div class="flex flex-col md:flex-row gap-6 px-4">
-                <Image :src="article.image" class="object-cover md:rounded-l-3xl md:w-52 xl:w-72 max-h-96" />
+                <div>
+                    <Image :src="article.pictureName" :withImagesPath="true" class="object-cover md:rounded-l-3xl md:w-52 xl:w-72 h-96" />
+                    <div v-if="canUpload" class="flex flex-row justify-center mt-3">
+                        <FileUpload
+                          mode="basic"
+                          accept="image/*"
+                          :customUpload="true" 
+                          @uploader="uploadPicture"
+                          :auto="true"
+                          :chooseLabel="$t('common.upload')"
+                        />
+                    </div>
+                </div>
                 <div class="flex flex-col flex-1 gap-7">
                     <div v-if="article.user">
                         <span class="inline mr-2">{{ $t('common.by') }}:</span>
@@ -116,6 +128,24 @@ export default {
             });
         };
 
+        const uploadPicture = async (event) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(event.files[0]);
+            reader.onloadend = async () => {
+                // Remove first part.
+                const base64Data = reader.result.replace(/^data:image\/.*?;base64,/, '');
+
+                try {
+                    await articleStore.uploadPictureAsync(base64Data);
+                    showSuccess(toast, t);
+                }
+                catch (error) {
+                    console.error(error);
+                    showError(toast, t);
+                }
+            };
+        };
+
         onMounted(async () => {
             // Get article by id from params if present.
             if (articleId.value) {
@@ -144,14 +174,19 @@ export default {
             }
             return true;
         });
+        const canUpload = computed(() => {
+            return article.value?.id && canEdit.value;
+        });
 
         return {
             loaded,
             article,
             canEdit,
+            canUpload,
             goToUserAsync,
             upsertArticleAsync,
-            deleteArticle
+            deleteArticle,
+            uploadPicture
         };
     },
     components: { Image, Loading }

@@ -1,9 +1,4 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Web.Business.Dtos;
 using Web.Business.Exceptions;
 using Web.Data.Repositories;
@@ -34,6 +29,15 @@ namespace Web.Business.Operations
         Task<Article> UpsertArticleAsync(ArticleUpsert upsert, int userId);
 
         /// <summary>
+        /// Updates article's picture.
+        /// </summary>
+        /// <param name="articleId"></param>
+        /// <param name="userId"></param>
+        /// <param name="picture"></param>
+        /// <returns></returns>
+        Task<Article> UpdateArticlePictureAsync(int articleId, int userId, byte[] picture);
+
+        /// <summary>
         /// Delets article by id.
         /// </summary>
         /// <param name="articleId"></param>
@@ -46,12 +50,18 @@ namespace Web.Business.Operations
         private readonly IMapper mapper;
         private readonly IUnitOfWorkFactory unitOfWorkFactory;
         private readonly IArticleRepository articleRepository;
+        private readonly IImageSaver imageSaver;
 
-        public ArticleOperation(IMapper mapper, IUnitOfWorkFactory unitOfWork, IArticleRepository articleRepository)
+        public ArticleOperation(
+            IMapper mapper,
+            IUnitOfWorkFactory unitOfWork,
+            IArticleRepository articleRepository,
+            IImageSaver imageSaver)
         {
             this.mapper = mapper;
             this.unitOfWorkFactory = unitOfWork;
             this.articleRepository = articleRepository;
+            this.imageSaver = imageSaver;
         }
 
         /// <summary>
@@ -124,7 +134,38 @@ namespace Web.Business.Operations
             }
 
             return this.mapper.Map<Article>(model);
-        }        
+        }
+
+        public async Task<Article> UpdateArticlePictureAsync(int articleId, int userId, byte[] picture)
+        {
+            using (var unitOfWork = this.unitOfWorkFactory.Create())
+            {
+                var model = await this.articleRepository.GetByIdAsync(articleId);
+
+                CheckUserId(userId, model);
+
+                // Check if old picture exists.
+                if (!string.IsNullOrWhiteSpace(model.PictureName))
+                {
+                    this.imageSaver.DeleteImage(model.PictureName);
+                }
+
+                // Save new picture and set its name.
+                model.PictureName = await this.imageSaver.SaveImageAsync(picture);
+
+                try
+                {
+                    await unitOfWork.CommitAsync();
+                }
+                catch
+                {
+                    unitOfWork.Rollback();
+                    throw;
+                }
+
+                return this.mapper.Map<Article>(model);
+            }
+        }
 
         public async Task DeleteArticleAsync(int articleId, int userId)
         {
@@ -145,9 +186,9 @@ namespace Web.Business.Operations
                     unitOfWork.Rollback();
                     throw;
                 }
-                
+
             }
         }
-        
+
     }
 }

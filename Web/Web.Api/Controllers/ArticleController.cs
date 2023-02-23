@@ -37,6 +37,14 @@ namespace Web.Api.Controllers
         }
 
         [Authorize]
+        [HttpPost(nameof(UploadPicture))]
+        public async Task<IActionResult> UploadPicture([FromBody] ArticlePictureUpload upload)
+        {
+            var result = await articleOperation.UpdateArticlePictureAsync(upload.ArticleId, this.UserId.Value, Convert.FromBase64String(upload.PictureBase64));
+            return Ok(result);
+        }
+
+        [Authorize]
         [HttpDelete(nameof(Delete))]
         public async Task<IActionResult> Delete([FromQuery] int id)
         {
