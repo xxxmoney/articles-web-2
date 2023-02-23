@@ -35,12 +35,12 @@ export default {
     main: {
         header: {
             links: {
-                "home": "Hlavní stránka",
-                "articles": "Články",
-                "login": "Příhlášení",
-                "register": "Registrace",
-                "profile": "Profil",
-                "logout": "Odhlásit se"
+                home: "Hlavní stránka",
+                articles: "Články",
+                login: "Příhlášení",
+                register: "Registrace",
+                profile: "Profil",
+                logout: "Odhlásit se"
             }
         },
         footer: {
@@ -49,14 +49,16 @@ export default {
 
         pages: {
             home: {
-                
+                title: "Vítejte",
+                subtitle: "Vítejte na webu GreatArticles, kde můžete číst články a psát vlastní články.",
+                get_started: "Začít"
             },
             login: {
-              "submit": "Přihlásit se"
+              submit: "Přihlásit se"
             },
             register: {
-              "submit": "Registrovat se",
-              "password_confirmation": "Potvrzení hesla"
+              submit: "Registrovat se",
+              password_confirmation: "Potvrzení hesla"
             }
         }
     }

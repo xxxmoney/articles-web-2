@@ -35,12 +35,12 @@ export default {
     main: {
         header: {
             links: {
-                "home": "Home",
-                "articles": "Articles",
-                "login": "Login",
-                "register": "Register",
-                "profile": "Profile",
-                "logout": "Logout"
+                home: "Home",
+                articles: "Articles",
+                login: "Login",
+                register: "Register",
+                profile: "Profile",
+                logout: "Logout"
             }
         },
         footer: {
@@ -49,14 +49,16 @@ export default {
 
         pages: {
             home: {
-                
+              title: "Welcome",
+              subtitle: "Welcome to GreatArticles website, where you can read articles and write your own articles.",
+              get_started: "Get Started"
             },
             login: {
-              "submit": "Login"
+              submit: "Login"
             },
             register: {
-              "submit": "Register",
-              "password_confirmation": "Password confirmation"
+              submit: "Register",
+              password_confirmation: "Password confirmation"
             }
         }
     }

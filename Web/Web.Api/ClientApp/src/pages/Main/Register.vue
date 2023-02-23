@@ -89,7 +89,7 @@
           // Register with values from model.
           await authStore.registerAsync(model.value.name, model.value.surname, model.value.email, model.value.password);
 
-          showSuccess(toast, t);
+          //showSuccess(toast, t);
 
           // Navigate to login page.
           await router.push({ name: 'login' });

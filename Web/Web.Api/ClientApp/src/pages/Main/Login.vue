@@ -61,7 +61,7 @@
           // Login with values from model.
           await authStore.loginAsync(model.value.email, model.value.password);
 
-          showSuccess(toast, t);
+          //showSuccess(toast, t);
 
           // Navigate to home page.
           await router.push({ name: 'home' });

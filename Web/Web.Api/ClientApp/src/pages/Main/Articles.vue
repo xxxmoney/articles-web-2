@@ -1,12 +1,14 @@
 <template>
-    <Loading :loaded="loaded" />
-
-    <div v-if="isLoggedIn" class="flex flex-row justify-center gap-3 mb-5">
-        <Button icon="pi pi-plus" @click="goToAddArticleAsync" />
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <ArticlePreview v-for="article in articles" :id="article.id" :key="article.id" class="m-auto" />
+    <div>
+        <Loading :loaded="loaded" />
+    
+        <div v-if="isLoggedIn" class="flex flex-row justify-center gap-3 mb-5">
+            <Button icon="pi pi-plus" @click="goToAddArticleAsync" />
+        </div>
+    
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <ArticlePreview v-for="article in articles" :id="article.id" :key="article.id" class="m-auto" />
+        </div>
     </div>
 </template>
 
