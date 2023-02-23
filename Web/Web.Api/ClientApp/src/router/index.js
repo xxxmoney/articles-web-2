@@ -6,6 +6,7 @@ import Login from '../pages/Main/Login.vue'
 import Register from '../pages/Main/Register.vue'
 import Articles from '../pages/Main/Articles.vue'
 import Article from '../pages/Main/Article.vue'
+import User from '../pages/Main/User.vue'
 
 const routes = [
   { 
@@ -17,6 +18,8 @@ const routes = [
       { name: 'register', path: 'register', component: Register },
       { name: 'articles', path: 'articles', component: Articles },
       { name: 'article', path: 'article/:id?', component: Article },
+      { name: 'user', path: 'user/:id?', component: User },
+      { name: 'profile', path: 'profile', component: User }
     ]
   }
 ]
