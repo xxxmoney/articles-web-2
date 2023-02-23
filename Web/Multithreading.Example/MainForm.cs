@@ -25,7 +25,7 @@
                     this.pictureBox.Image.Dispose();
                 }
 
-                // Try to get image with resolver.
+                // Get image with resolver.
                 var bytes = await this.resolver.GetImageAsync();
 
                 // Timeout for test.
