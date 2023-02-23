@@ -1,9 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Web.Data.Models;
 
 namespace Web.Data.Contexts
@@ -60,6 +55,10 @@ namespace Web.Data.Contexts
                 entity.Property(e => e.Content)
                     .IsRequired()
                     .HasColumnType("text");
+
+                entity.Property(e => e.PictureName)
+                    .IsRequired(false)
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.CreatedAt)
                     .IsRequired();

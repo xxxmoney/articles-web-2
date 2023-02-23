@@ -1,11 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Web.Business.Mappers;
 using Web.Business.Operations;
 using Web.Data.Contexts;
@@ -51,6 +45,7 @@ namespace Web.Ioc
             services.AddScoped<IPasswordHashOperation, PasswordHashOperation>();
             services.AddScoped<IUserOperation, UserOperation>();
             services.AddScoped<IArticleOperation, ArticleOperation>();
+            services.AddScoped<IImageSaver, ImageSaver>();
 
             // Services
 
